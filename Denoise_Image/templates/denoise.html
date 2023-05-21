@@ -1,0 +1,38 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Image Noise</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1 class="heading">Remove Image Noise</h1>
+    <form id="upload-form" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="upload" class="upload-label">Upload Image</label>
+      <input type="file" id="upload" name="image" onchange="displayFileName()" accept="image/*">
+      <p id="file-name"></p>
+      <div id="output-container" class="output-container">
+        <img id="uploaded-image" src="#" alt="Uploaded Image">
+      </div>
+      <button onclick="convertImage()" id="con">Convert</button>
+      <div id="denoised-image-container" class="output-container"></div>
+      <div><code>This is only available for jpeg images.</code></div>
+      {% comment %} <div id="output-container" class="output-container"> {% endcomment %}
+        {% if denoised_image %}
+          <img src="data:image/jpeg;base64,{{ denoised_image }}" alt="Denoised Image">
+        {% endif %}
+      </div>
+    </form>
+  </div>
+
+  <script src="{% static 'script.js' %}"></script>
+
+</body>
+</html>
+

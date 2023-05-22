@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <style>
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top:100px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login Form</h1>
+    <form id="main-form" method="POST" action="{% url 'Denoise:denoise_image' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="label" for="first-name">First Name:</label>
+        <input class="input-field" type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
+      </div>
+      <div class="form-group">
+        <label class="label" for="last-name">Last Name:</label>
+        <input class="input-field" type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+      </div>
+      <div class="form-group">
+        <label class="label" for="email">Email ID:</label>
+        <input class="input-field" type="email" id="email" name="email" placeholder="Enter your email address" required>
+      </div>
+      <div class="form-group">
+        <label class="label" for="phone">Phone Number:</label>
+        <input class="input-field" type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+      </div>
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function displayFileName() {
+      var fileInput = document.getElementById("upload");
+      var fileNameDisplay = document.getElementById("file-name");
+      if (fileInput.files.length > 0) {
+        fileNameDisplay.textContent = "Selected file: " + fileInput.files[0].name;
+      } else {
+        fileNameDisplay.textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>
